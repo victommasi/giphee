@@ -1,3 +1,49 @@
+
+/* CSS RESET */
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+*,*:before,*:after {
+  box-sizing: border-box;
+}
+
+
+*:focus {
+  outline: 0;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  display: table;
+  width: 100%;
+}
+
+body, input, button {
+  font: 14px 'Muli', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* CSS */
+
 .App {
   text-align: center;
 }
@@ -7,32 +53,57 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 100vh;
+  background-color: #624ac0;
+  padding: 50px;
+}
+
+.main > .container {
+  max-width: 800px;
+  max-width: 0 auto;
+}
+
+.main .grid {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.main .grid > .card {
+  height: 300px;
+  width: 300px;
+}
+
+.main .grid > .card > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+}
+
+.main .search {
+  margin-bottom: 50px;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+}
+
+.main .search > input {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
   color: white;
+  margin-left: 10px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.main .search > input::placeholder {
+  color: #b0a4df;
+  font-weight: bold;
 }
