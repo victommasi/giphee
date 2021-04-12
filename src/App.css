@@ -27,7 +27,7 @@ body {
 }
 
 body, input, button {
-  font: 14px 'Muli', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 a {
@@ -98,12 +98,12 @@ button {
   background-color: transparent;
   border: none;
   font-size: 20px;
-  font-weight: bold;
-  color: white;
+  font-weight: 600;
+  color: #b0a4df;
   margin-left: 10px;
 }
 
 .main .search > input::placeholder {
   color: #b0a4df;
-  font-weight: bold;
+  font-weight: 600;
 }

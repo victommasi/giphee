@@ -4,6 +4,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 // import logo from './logo.svg';
 import './App.css';
 
+import Grid from '././components/Grid';
+
 function App() {
   return (
     <div className="App">
@@ -13,20 +15,7 @@ function App() {
             <FontAwesomeIcon icon={faSearch} size="lg" color="#b0a4df" />
             <input type="text" placeholder="Find your gif"/> 
           </div>
-          <ul className="grid">
-            <li className="card">
-              <img src="https://images.pexels.com/photos/1626481/pexels-photo-1626481.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></img>
-            </li>
-            <li className="card">
-              <img src="https://images.pexels.com/photos/1626481/pexels-photo-1626481.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></img>
-            </li>
-            <li className="card">
-              <img src="https://images.pexels.com/photos/1626481/pexels-photo-1626481.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></img>
-            </li>
-            <li className="card">
-              <img src="https://images.pexels.com/photos/1626481/pexels-photo-1626481.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></img>
-            </li>
-          </ul>
+          <Grid />
         </div>
       </main>
     </div>
