@@ -69,14 +69,36 @@ button {
 
 .main .grid {
   display: grid;
-  gap: 40px;
-  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 800px;
+  margin: 0 auto;
 }
 
-.main .grid > .card {
+.main .grid {
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 15vh);
+  grid-template-areas:
+    "hero   hero   hero   med1   med1"
+    "hero   hero   hero   med2   med2"
+    "hero   hero   hero   big1  big1"
+    "med3   med3   small1  big1 big1"
+  ;
+}
+
+/* .main .grid > .card { 
   height: 300px;
   width: 300px;
-}
+} */
+
+.main .grid > .card:nth-child(6n+1)  { grid-area: hero; }
+.main .grid > .card:nth-child(6n+2)  { grid-area: big1; }
+.main .grid > .card:nth-child(6n+3)  { grid-area: med1; }
+.main .grid > .card:nth-child(6n+4)  { grid-area: med2; }
+.main .grid > .card:nth-child(6n+5)  { grid-area: med3; }
+.main .grid > .card:nth-child(6n+6)  { grid-area: small1; }
+/* .main .grid > .card:nth-child(10n+7)  { grid-area: small3; } */
+/* .main .grid > .card:nth-child(10n+8)  { grid-area: small4; } */
+/* .main .grid > .card:nth-child(10n+9)  { grid-area: small5; } */
 
 .main .grid > .card > img {
   height: 100%;
