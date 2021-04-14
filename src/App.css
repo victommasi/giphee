@@ -59,46 +59,26 @@ button {
   align-items: center;
   min-height: 100vh;
   background-color: #624ac0;
-  padding: 50px;
+  padding: 50px 30px;
 }
 
 .main > .container {
-  max-width: 800px;
-  max-width: 0 auto;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .main .grid {
   display: grid;
   gap: 20px;
-  width: 800px;
+  max-width: 900px;
   margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
 }
 
-.main .grid {
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 15vh);
-  grid-template-areas:
-    "hero   hero   hero   med1   med1"
-    "hero   hero   hero   med2   med2"
-    "hero   hero   hero   big1  big1"
-    "med3   med3   small1  big1 big1"
-  ;
-}
-
-/* .main .grid > .card { 
+.main .grid > .card {
   height: 300px;
   width: 300px;
-} */
-
-.main .grid > .card:nth-child(6n+1)  { grid-area: hero; }
-.main .grid > .card:nth-child(6n+2)  { grid-area: big1; }
-.main .grid > .card:nth-child(6n+3)  { grid-area: med1; }
-.main .grid > .card:nth-child(6n+4)  { grid-area: med2; }
-.main .grid > .card:nth-child(6n+5)  { grid-area: med3; }
-.main .grid > .card:nth-child(6n+6)  { grid-area: small1; }
-/* .main .grid > .card:nth-child(10n+7)  { grid-area: small3; } */
-/* .main .grid > .card:nth-child(10n+8)  { grid-area: small4; } */
-/* .main .grid > .card:nth-child(10n+9)  { grid-area: small5; } */
+}
 
 .main .grid > .card > img {
   height: 100%;
@@ -113,7 +93,6 @@ button {
   width: 100%;
   display: flex;
   align-items: center;
-
 }
 
 .main .search > input {
@@ -128,4 +107,42 @@ button {
 .main .search > input::placeholder {
   color: #b0a4df;
   font-weight: 600;
+}
+
+
+@media screen and (max-width: 425px) {
+  .main .grid {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+
+  .main .grid > .card {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .main .grid {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+
+  .main .grid > .card {
+    height: 150px;
+    width: 150px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1040px) {
+
+  .main .grid {
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+  }
+
+  .main .grid > .card {
+    height: 200px;
+    width: 200px;
+  }
 }

@@ -18,7 +18,7 @@ const Grid = () => {
         params:
         {
           api_key: 'Ykd0y68FN92mO1Lc6jR8iCnYhtEKL6Ze',
-          limit: 6,
+          limit: 9,
           offset: 0,
           rating: 'g'
         }
@@ -52,7 +52,7 @@ const Grid = () => {
         params:
         {
           api_key: 'Ykd0y68FN92mO1Lc6jR8iCnYhtEKL6Ze',
-          limit: 6,
+          limit: 9,
           offset: newOffset,
           rating: 'g'
         }
@@ -65,7 +65,7 @@ const Grid = () => {
 
 
     if (scrollRatio > 0) {
-      // loadMoreGifs();
+      loadMoreGifs();
     }
   }, [scrollRatio])
 
