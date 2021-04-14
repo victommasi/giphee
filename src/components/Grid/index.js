@@ -3,13 +3,11 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import api from '../../services/api'
 
-const Grid = () => {
+const Grid = (parentGifs) => {
   const scrollObserver = useRef();
 
-  const [searchTerm, setSearchTerm] = useState('');
   const [gifs, setGifs] = useState([]);
   const [offset, setOffset] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [scrollRatio, setScrollRatio] = useState(null);
 
   useEffect(() => {
@@ -18,13 +16,14 @@ const Grid = () => {
         params:
         {
           api_key: 'Ykd0y68FN92mO1Lc6jR8iCnYhtEKL6Ze',
-          limit: 9,
+          limit: 12,
           offset: 0,
           rating: 'g'
         }
       });
       setGifs(response.data.data);
     }
+
     loadGifs();
   }, [])
 
@@ -42,8 +41,6 @@ const Grid = () => {
   }, [])
 
   useEffect(() => {
-    console.log(scrollRatio)
-
     const loadMoreGifs = async () => {
       const newOffset = offset + 10;
       setOffset(newOffset)
@@ -52,7 +49,7 @@ const Grid = () => {
         params:
         {
           api_key: 'Ykd0y68FN92mO1Lc6jR8iCnYhtEKL6Ze',
-          limit: 9,
+          limit: 12,
           offset: newOffset,
           rating: 'g'
         }
@@ -69,6 +66,11 @@ const Grid = () => {
     }
   }, [scrollRatio])
 
+  useEffect(() => {
+    setGifs(parentGifs.gifs);
+
+    return [];
+  }, [parentGifs])
 
   return (
     <ul className="grid">
