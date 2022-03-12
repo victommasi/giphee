@@ -1,33 +1,28 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import Grid from './components/Grid/Grid';
+import GlobalStyles from './styles/GlobalStyles';
 
-import api from './services/api'
-
-// import logo from './logo.svg';
-import './App.css';
-
-import Grid from '././components/Grid';
+import './App.css'
+import { fetchTredingGifs, searchGifs } from './services/GifsService';
+import { colors } from './styles/colors';
 
 const App = () => {
   const scrollObserver = React.useRef() as React.MutableRefObject<HTMLInputElement>;
-
   const [gifs, setGifs] = useState<any>([]);
   const [term, setTerm] = useState('');
   const [offset, setOffset] = useState(0);
   const [scrollRatio, setScrollRatio] = useState<any | null>(null);
 
-  useEffect(() => {
-    const loadGifs = async () => {
-      const response = await fetchTredingGifs(0);
-      setGifs(response.data.data);
-    }
+  const loadGifs = useCallback(async () => {
+    const response = await fetchTredingGifs(12, 0);
+    setGifs(response.data.data);
+  }, []);
 
+  useEffect(() => {
     loadGifs();
-  }, [])
 
-  useEffect(() => {
     const intersectionObserver = new IntersectionObserver((entries) => {
       const ratio = entries[0].intersectionRatio;
       setScrollRatio(ratio);
@@ -38,7 +33,7 @@ const App = () => {
     return () => {
       intersectionObserver.disconnect();
     }
-  }, [])
+  }, [loadGifs])
 
   useEffect(() => {
     const loadMoreGifs = async (term: string) => {
@@ -47,9 +42,9 @@ const App = () => {
       setOffset(newOffset)
 
       if (term === '') {
-        response = await fetchTredingGifs(newOffset);
+        response = await fetchTredingGifs(12, newOffset);
       } else {
-        response = await searchGifs(term, newOffset);
+        response = await searchGifs(term, 12, newOffset);
       }
 
       const newGifs = [...gifs]
@@ -57,67 +52,40 @@ const App = () => {
       setGifs(newGifs);
     }
 
-
     if (scrollRatio > 0 && gifs.length > 0) {
       loadMoreGifs(term);
     }
 
-  }, [scrollRatio])
+  }, [gifs, offset, scrollRatio, term])
 
-  const handleSearch = async (e: any) => {
-    let newTerm = e.target.value;
-    let response
+  const handleSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    let newTerm = event.target.value;
+    let response;
 
     if (newTerm.length > 1) {
-      response = await searchGifs(newTerm, 0);
+      response = await searchGifs(newTerm, 12, 0);
       const searchedGifs = response.data.data
       searchedGifs.length > 0 ? setGifs(searchedGifs) : setGifs([]);
     } else {
-      response = await fetchTredingGifs(0);
+      response = await fetchTredingGifs(12, 0);
       setGifs(response.data.data);
     }
 
     setTerm(newTerm);
   }
 
-  const searchGifs = async (term: string, offset: number) => {
-    return await api.get('/search', {
-      params:
-      {
-        api_key: 'Ykd0y68FN92mO1Lc6jR8iCnYhtEKL6Ze',
-        q: term,
-        limit: 12,
-        offset: offset,
-        rating: 'g'
-      }
-    });
-  }
-
-  const fetchTredingGifs = async (offset: number) => {
-    return await api.get('/trending', {
-      params:
-      {
-        api_key: 'Ykd0y68FN92mO1Lc6jR8iCnYhtEKL6Ze',
-        limit: 12,
-        offset: offset,
-        rating: 'g'
-      }
-    });
-  }
-
   return (
-    <div className="App">
-      <main className="main">
-        <div className="container">
+      <main className="App">
+        <section className="container">
           <div className="search">
-            <FontAwesomeIcon icon={faSearch} size="lg" color="#b0a4df" />
+            <FontAwesomeIcon icon={faSearch} size="lg" color={colors.secondary} />
             <input type="text" placeholder="Find your gif" onChange={handleSearch} />
           </div>
           <Grid gifs={gifs} />
-          <div ref={scrollObserver}></div>
-        </div>
+          <div ref={scrollObserver} />
+        </section>
+        <GlobalStyles />
       </main>
-    </div>
   );
 }
 
