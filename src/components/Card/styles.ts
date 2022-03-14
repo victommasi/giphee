@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const CardContainer = styled.li`
   height: 300px;
   width: 300px;
@@ -21,7 +20,7 @@ export const CardContainer = styled.li`
   }
 
   &:hover {
-    p {
+    .Card__info {
       display: block;
     }
   }
@@ -33,17 +32,36 @@ export const CardContainer = styled.li`
     border-radius: 25px;
   } 
 
-  p {
+  .Card__info {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: none;
+    width: 100%;
+  }
+  
+  .Card__title, .Card__button {
     color: white;
     font-size: 14px;
     font-weight: 600;
     width: 100%;
     padding: 0 15px;
-    display: none;
+    margin-bottom: 5px;
+  }
+
+  .Card__button {
+    background: none;
+    border: none;
+    transition: opacity 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  svg {
+    margin-left: 5px;
   }
 
   
@@ -51,9 +69,14 @@ export const CardContainer = styled.li`
       height: 100px;
       width: 100px;
 
-    p {
+    .Card__title {
       font-size: 11px;
       padding: 5px;
+      max-height: 45px;
+      display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
     }
   }
 
