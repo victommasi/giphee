@@ -1,9 +1,9 @@
-import Card from "../Card/Card";
+import Card, { GifProps } from "../Card/Card";
 
 import { GridContainer } from "./styles";
 
-type GridProps= {
-  gifs: [];
+type GridProps = {
+  gifs: GifProps[];
 }
 
 const Grid = ({ gifs }: GridProps) => {

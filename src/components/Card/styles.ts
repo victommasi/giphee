@@ -64,6 +64,9 @@ export const CardContainer = styled.li`
     margin-left: 5px;
   }
 
+  .Card__copied {
+    color: white;
+  }
   
   @media screen and (max-width: 425px) {
       height: 100px;

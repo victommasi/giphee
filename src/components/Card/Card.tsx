@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy } from '@fortawesome/free-solid-svg-icons'
 
@@ -9,7 +9,7 @@ type CardProps = {
   gif: GifProps
 }
 
-type GifProps = {
+export type GifProps = {
   id: string,
   images: any,
   title: string,
@@ -18,9 +18,18 @@ type GifProps = {
 }
 
 const Card: React.FC<CardProps> = ({ gif }: CardProps) => {
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (copied) {
+      setTimeout(() => setCopied(false), 2000);
+    }
+
+  }, [copied]);
 
   const handleCopyURL = () => {
     navigator.clipboard.writeText(gif.embed_url);
+    setCopied(true);
   }
 
   return <CardContainer>
@@ -31,6 +40,7 @@ const Card: React.FC<CardProps> = ({ gif }: CardProps) => {
         Copy URL
         <FontAwesomeIcon icon={faCopy} size="lg" color={colors.white} />
       </button>
+      {copied && <span className="Card__copied">Copied!</span>}
     </div>
   </CardContainer>;
 }
