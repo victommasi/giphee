@@ -23,9 +23,7 @@ export default createGlobalStyle`
   }
 
   .App .search {
-    margin-bottom: 50px;
     text-align: left;
-    width: 100%;
     display: flex;
     align-items: center;
   }
@@ -37,6 +35,7 @@ export default createGlobalStyle`
     font-weight: 600;
     color: ${colors.secondary};
     margin-left: 10px;
+    width: 100%;
   }
 
   .App .search > input::placeholder {

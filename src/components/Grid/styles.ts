@@ -6,7 +6,7 @@ export const GridContainer = styled.ul`
   max-width: 900px;
   margin: 0 auto;
   grid-template-columns: repeat(3, 1fr);
-
+  margin-top: 50px;
 
   @media screen and (max-width: 425px) {
     grid-template-columns: repeat(2, 1fr);

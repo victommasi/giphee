@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -21,14 +22,13 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    loadGifs();
-
     const intersectionObserver = new IntersectionObserver((entries) => {
       const ratio = entries[0].intersectionRatio;
       setScrollRatio(ratio);
     })
 
     intersectionObserver.observe(scrollObserver.current)
+    loadGifs();
 
     return () => {
       intersectionObserver.disconnect();
@@ -47,20 +47,19 @@ const App = () => {
         response = await searchGifs(term, 12, newOffset);
       }
 
-      const newGifs = [...gifs]
-      newGifs.push(...response.data.data)
-      setGifs(newGifs);
+      setGifs([...gifs, ...response.data.data]);
     }
 
     if (scrollRatio > 0 && gifs.length > 0) {
       loadMoreGifs(term);
     }
 
-  }, [gifs, offset, scrollRatio, term])
+  }, [scrollRatio])
 
   const handleSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
     let newTerm = event.target.value;
     let response;
+    setTerm(newTerm);
 
     if (newTerm.length > 1) {
       response = await searchGifs(newTerm, 12, 0);
@@ -70,8 +69,6 @@ const App = () => {
       response = await fetchTredingGifs(12, 0);
       setGifs(response.data.data);
     }
-
-    setTerm(newTerm);
   }
 
   return (
@@ -79,7 +76,7 @@ const App = () => {
         <section className="container">
           <div className="search">
             <FontAwesomeIcon icon={faSearch} size="lg" color={colors.secondary} />
-            <input type="text" placeholder="Find your gif" onChange={handleSearch} />
+            <input type="text" placeholder="Find your gif and share it" onChange={handleSearch} />
           </div>
           <Grid gifs={gifs} />
           <div ref={scrollObserver} />
