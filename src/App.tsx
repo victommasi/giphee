@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import Grid from './components/Grid/Grid';
 import GlobalStyles from './styles/GlobalStyles';
 
@@ -16,12 +16,13 @@ const App = () => {
   const [term, setTerm] = useState('');
   const [offset, setOffset] = useState(0);
   const [scrollRatio, setScrollRatio] = useState<number>(0);
+  const containerRef = useRef<null | HTMLElement>(null)
 
   const fetchGifs = async (term: string, offset?: number) => {
     if (term.length > 1) {
-      return await searchGifs(term, 12, offset || 0);
+      return await searchGifs(term, 15, offset || 0);
     } else {
-      return await fetchTredingGifs(12, offset || 0);
+      return await fetchTredingGifs(15, offset || 0);
     }
   }
 
@@ -66,14 +67,21 @@ const App = () => {
     setGifs(response.data.data);
   }, []);
 
+  const handleScrollTop = () => {
+    containerRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }
+
   return (
       <main className="App">
-        <section className="container">
+        <section className="container" ref={containerRef}>
           <div className="search">
             <FontAwesomeIcon icon={faSearch} size="lg" color={colors.secondary} />
             <input type="text" placeholder="Find your gif and share it" onChange={handleTermChange} />
           </div>
           <Grid gifs={gifs} />
+          <button type="button" className="fab-button" onClick={handleScrollTop}>
+            <FontAwesomeIcon icon={faArrowUp} size="lg" color={colors.white} />
+          </button>
           <div ref={scrollObserver} />
         </section>
         <GlobalStyles />

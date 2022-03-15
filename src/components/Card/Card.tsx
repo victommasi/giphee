@@ -33,7 +33,7 @@ const Card: React.FC<CardProps> = ({ gif }: CardProps) => {
   }
 
   return <CardContainer>
-    <img alt={gif.title} title={gif.title} src={gif.images.preview_gif.url}/>
+    <img alt={gif.title} title={gif.title} src={gif.images.fixed_height.url}/>
     <div className="Card__info">
       <p className="Card__title">{gif.title}</p>
       <button className="Card__button" title="button" onClick={handleCopyURL}>

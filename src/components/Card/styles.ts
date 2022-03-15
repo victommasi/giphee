@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const CardContainer = styled.li`
-  height: 300px;
-  width: 300px;
-  border-radius: 25px;
+  height: 170px;
+  width: 280px;
   position: relative;
 
   &::before {
@@ -11,7 +10,6 @@ export const CardContainer = styled.li`
     width: 100%;
     height: 100%;
     position: absolute;
-    border-radius: 25px;
     transition: background-color 0.2s ease-in-out;
   }
 
@@ -21,7 +19,8 @@ export const CardContainer = styled.li`
 
   &:hover {
     .Card__info {
-      display: block;
+      display: grid;
+      place-content: center;
     }
   }
 
@@ -29,7 +28,7 @@ export const CardContainer = styled.li`
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border-radius: 25px;
+    border-radius: 6px;
   } 
 
   .Card__info {
@@ -39,6 +38,7 @@ export const CardContainer = styled.li`
     transform: translate(-50%, -50%);
     display: none;
     width: 100%;
+    z-index: 2;
   }
   
   .Card__title, .Card__button {
@@ -65,12 +65,14 @@ export const CardContainer = styled.li`
   }
 
   .Card__copied {
+    position: relative;
     color: white;
+    /* inset: 200% 0% 0% 0%; */
   }
   
-  @media screen and (max-width: 425px) {
-      height: 100px;
-      width: 100px;
+  @media screen and (max-width: 767px) {
+    height: 150px;
+    width: 260px;
 
     .Card__title {
       font-size: 11px;
@@ -81,15 +83,5 @@ export const CardContainer = styled.li`
 			-webkit-box-orient: vertical;
 			overflow: hidden;
     }
-  }
-
-  @media screen and (min-width: 426px) and (max-width: 768px) {
-    height: 150px;
-    width: 150px;
-  }
-
-  @media screen and (min-width: 769px) and (max-width: 1040px) {
-    height: 200px;
-    width: 200px;
   }
 `;
