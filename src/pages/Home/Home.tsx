@@ -72,20 +72,26 @@ const Home: React.FC = () => {
   }
 
   return (
-      <main className="App">
-        <section className="container" ref={containerRef}>
-          <div className="search">
-            <FontAwesomeIcon icon={faSearch} size="lg" color={colors.secondary} />
-            <input type="text" placeholder="Find your gif and share it" onChange={handleTermChange} />
-          </div>
-          <Grid gifs={gifs} />
-          <button type="button" className="fab-button" onClick={handleScrollTop}>
-            <FontAwesomeIcon icon={faArrowUp} size="lg" color={colors.white} />
-          </button>
-          <div ref={scrollObserver} />
-        </section>
-        <GlobalStyles />
-      </main>
+    <>
+    <aside className="aside">
+      <img src="" alt="lgo" />
+      <ul>
+        <li>Home</li>
+        <li>Favorites</li>
+      </ul>
+    </aside>
+    <section className="container" ref={containerRef}>
+      <div className="search">
+        <FontAwesomeIcon icon={faSearch} size="lg" color={colors.secondary} />
+        <input type="text" placeholder="Find your gif and share it" onChange={handleTermChange} />
+      </div>
+      <Grid gifs={gifs} />
+      <button type="button" className="fab-button" onClick={handleScrollTop}>
+        <FontAwesomeIcon icon={faArrowUp} size="lg" color={colors.white} />
+      </button>
+      <div ref={scrollObserver} />
+    </section>
+    </>
   );
 }
 

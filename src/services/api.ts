@@ -6,7 +6,7 @@ const api = axios.create({
 
 api.interceptors.request.use((request) => {
   request.params = request.params || {};
-  request.params['api_key'] = 'Ykd0y68FN92mO1Lc6jR8iCnYhtEKL6Ze';
+  request.params['api_key'] = 'dc6zaTOxFJmzC';
   return request;
 });
 

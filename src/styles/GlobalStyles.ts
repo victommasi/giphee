@@ -5,11 +5,10 @@ export default createGlobalStyle`
   .App {
     text-align: center;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    min-height: 100vh;
+    height: inherit;
     background-color: ${colors.primary};
-    padding: 50px 30px;
+    overflow-y: hidden;
   }
 
   .App-logo {
@@ -18,8 +17,63 @@ export default createGlobalStyle`
   }
 
   .App > .container {
-    max-width: 900px;
+    max-width: 1400px;
+    max-height: 860px;
     margin: 0 auto;
+    padding: 0px 30px;
+    background-color: ${colors.primary};
+    overflow-y: auto;
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: ${colors.secondary}; 
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: ${colors.gray10}; 
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: ${colors.gray50}; 
+    }
+  }
+
+  .App aside {
+    height: 100%;
+    width: 200px;
+    background-color: ${colors.white};
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -25px;
+      background-color: ${colors.primary};
+      height: 50px;
+      width: 25px;
+      border-top-left-radius: 25px;
+      box-shadow: 0 -25px 0 0 ${colors.white}; 
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: -25px;
+      background-color: ${colors.primary};
+      height: 50px;
+      width: 25px;
+      border-bottom-left-radius: 25px;
+      box-shadow: 0 25px 0 0 ${colors.white}; 
+    }
   }
 
   .App .search {
@@ -66,5 +120,4 @@ export default createGlobalStyle`
       inset: 90% 0% 0% 80%;
     }
   }
-
 `;
