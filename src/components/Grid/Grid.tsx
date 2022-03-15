@@ -1,12 +1,11 @@
-import Card, { GifProps } from "../Card/Card";
+import Card, { Gif } from "../Card/Card";
 import { GridContainer } from "./styles";
 
 type GridProps = {
-  gifs: GifProps[];
+  gifs: Gif[];
 }
 
 const Grid = ({ gifs }: GridProps) => {
-
   return gifs && (
     <GridContainer>
       {gifs.map((gif: any, index: number) => (

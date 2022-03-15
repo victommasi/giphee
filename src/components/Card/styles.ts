@@ -1,9 +1,12 @@
 import styled from 'styled-components';
+import { colors } from '../../styles/colors';
 
 export const CardContainer = styled.li`
   height: 170px;
   width: 280px;
   position: relative;
+  border-radius: 6px;
+  box-shadow: 0px 2px 10px -4px rgba(0, 0, 0, 1);
 
   &::before {
     content: '';
@@ -11,6 +14,7 @@ export const CardContainer = styled.li`
     height: 100%;
     position: absolute;
     transition: background-color 0.2s ease-in-out;
+    border-radius: 6px;
   }
 
   &:hover:before {
@@ -38,6 +42,7 @@ export const CardContainer = styled.li`
     transform: translate(-50%, -50%);
     display: none;
     width: 100%;
+    height: 100%;
     z-index: 2;
   }
   
@@ -65,9 +70,18 @@ export const CardContainer = styled.li`
   }
 
   .Card__copied {
-    position: relative;
-    color: white;
-    /* inset: 200% 0% 0% 0%; */
+    position: absolute;
+    bottom: 10px;
+    left: 40%;
+    color: ${colors.orange};
+    text-shadow: 2px 2px black;
+  }
+
+  .Card__icon-fav {
+    position: absolute;
+    top: 10px;
+    left: 80%;
+    width: 50px;
   }
   
   @media screen and (max-width: 767px) {

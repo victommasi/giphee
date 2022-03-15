@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCopy } from '@fortawesome/free-solid-svg-icons'
+import { faCopy, faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as faHeartAlt } from '@fortawesome/free-regular-svg-icons'
 
 import { CardContainer } from './styles';
 import { colors } from '../../styles/colors';
 
 type CardProps = {
-  gif: GifProps
+  gif: Gif,
 }
 
-export type GifProps = {
+export type Gif = {
   id: string,
   images: any,
   title: string,
@@ -18,7 +19,8 @@ export type GifProps = {
 }
 
 const Card: React.FC<CardProps> = ({ gif }: CardProps) => {
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState<boolean>(false);
+  const [favorite, setFavorite] = useState<boolean>(false);
 
   useEffect(() => {
     if (copied) {
@@ -32,9 +34,16 @@ const Card: React.FC<CardProps> = ({ gif }: CardProps) => {
     setCopied(true);
   }
 
+  const handleSetFavorite = () => {
+    setFavorite(!favorite);
+  }
+
   return <CardContainer>
     <img alt={gif.title} title={gif.title} src={gif.images.fixed_height.url}/>
     <div className="Card__info">
+      <button className="Card__button Card__icon-fav" title="button" onClick={handleSetFavorite}>
+        <FontAwesomeIcon icon={favorite ? faHeart : faHeartAlt} size="lg" color={favorite ? colors.lightRed : colors.white} />
+      </button>
       <p className="Card__title">{gif.title}</p>
       <button className="Card__button" title="button" onClick={handleCopyURL}>
         Copy URL
