@@ -48,31 +48,64 @@ export default createGlobalStyle`
   .App aside {
     height: 100%;
     width: 200px;
-    background-color: ${colors.white};
-    position: relative;
+    background-color: ${colors.purple};
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
 
-    &:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: -25px;
-      background-color: ${colors.primary};
-      height: 50px;
-      width: 25px;
-      border-top-left-radius: 25px;
-      box-shadow: 0 -25px 0 0 ${colors.white}; 
+    @media screen and (max-width: 425px) {
+      width: 100px;
     }
 
-    &:after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      right: -25px;
-      background-color: ${colors.primary};
-      height: 50px;
-      width: 25px;
-      border-bottom-left-radius: 25px;
-      box-shadow: 0 25px 0 0 ${colors.white}; 
+    img {
+      width: 130px;
+      height: auto;
+    }
+
+    .nav ul {
+      list-style: none;
+      
+      li {
+        position: relative;
+        margin: 2em 0;
+        
+        a {
+          font-size: 0.7em;
+          line-height: 5em;
+          text-transform: uppercase;
+          text-decoration: none;
+          letter-spacing: 0.4em;
+          color: rgba(255,255,255,0.3);
+          display: block;
+          transition: all ease-out 300ms;
+        }
+        
+        &.active a {
+          color: white;
+        }
+        
+        &:not(.active)::after {
+          opacity: 0.2;
+        }
+        
+        &:not(.active):hover a {
+          color: rgba(#FFF, 0.75);
+        }
+        
+        &::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 0.2em;
+          background: black;
+          left: 0;
+          bottom: 0;
+          background-image: linear-gradient(to right, ${colors.primary}, ${colors.secondary})
+        }
+      }
     }
   }
 

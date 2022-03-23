@@ -1,5 +1,5 @@
 export const colors = {
-  primary: '#624ac0',
+  primary: '#5e42a6',
   secondary: '#b0a4df',
 
   gray10: '#EDF2F7',
@@ -7,6 +7,7 @@ export const colors = {
   gray100: '#7E7E7E',
   gray200: '#575756',
   
+  purple: '#312450',
   lightRed: '#FF4238',
   red: '#db2828',
   yellow: '#fbbd08',

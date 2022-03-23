@@ -3,7 +3,8 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import Grid from '../../components/Grid/Grid';
-import GlobalStyles from '../../styles/GlobalStyles';
+
+import logo from '../../assets/images/logo.png'
 
 import '../../App.css'
 import { fetchTredingGifs, searchGifs } from '../../services/GifsService';
@@ -74,11 +75,13 @@ const Home: React.FC = () => {
   return (
     <>
     <aside className="aside">
-      <img src="" alt="lgo" />
+      <img src={logo} alt="lgo" />
+      <nav className="nav">
       <ul>
-        <li>Home</li>
-        <li>Favorites</li>
+        <li className="active"><a href="#">Home</a></li>
+        <li><a href="#">Favorites</a></li>
       </ul>
+    </nav>
     </aside>
     <section className="container" ref={containerRef}>
       <div className="search">
