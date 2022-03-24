@@ -83,8 +83,23 @@ export const CardContainer = styled.li`
     left: 80%;
     width: 50px;
   }
+
+  @media screen and (max-width: 475px) {
+    height: 120px;
+    width: 220px;
+
+    .Card__title {
+      font-size: 10px;
+      padding: 5px;
+      max-height: 45px;
+      display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+    }
+  }
   
-  @media screen and (max-width: 767px) {
+  @media screen and (min-width: 475px) and (max-width: 767px) {
     height: 150px;
     width: 260px;
 

@@ -10,11 +10,11 @@ export const GridContainer = styled.ul`
   justify-items: center;
   overflow-y: auto;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1024px) {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1040px) {
+  @media screen and (min-width: 1024px) and (max-width: 1320px) {
     grid-template-columns: repeat(2, 1fr);
   }
 `;

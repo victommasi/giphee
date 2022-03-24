@@ -1,23 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Grid from '../../components/Grid/Grid';
-
-import logo from '../../assets/images/logo.png'
 
 import '../../App.css'
 import { fetchTredingGifs, searchGifs } from '../../services/GifsService';
 import { colors } from '../../styles/colors';
 import { Gif } from '../../components/Card/Card';
+import SideBar from '../../components/SideBar/Sidebar';
+
+import { HomeContainer } from './styles';
 
 const Home: React.FC = () => {
-  const scrollObserver = React.useRef() as React.MutableRefObject<HTMLInputElement>;
+  const scrollObserver = useRef() as React.MutableRefObject<HTMLInputElement>;
   const [gifs, setGifs] = useState<Gif[]>([]);
   const [term, setTerm] = useState('');
   const [offset, setOffset] = useState(0);
   const [scrollRatio, setScrollRatio] = useState<number>(0);
-  const containerRef = useRef<null | HTMLElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const fetchGifs = async (term: string, offset?: number) => {
     if (term.length > 1) {
@@ -60,7 +61,6 @@ const Home: React.FC = () => {
     }
   }, [scrollRatio])
 
-
   const handleTermChange = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
     let newTerm = event.target.value;
     setTerm(newTerm);
@@ -68,32 +68,17 @@ const Home: React.FC = () => {
     setGifs(response.data.data);
   }, []);
 
-  const handleScrollTop = () => {
-    containerRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }
-
   return (
     <>
-    <aside className="aside">
-      <img src={logo} alt="lgo" />
-      <nav className="nav">
-      <ul>
-        <li className="active"><a href="#">Home</a></li>
-        <li><a href="#">Favorites</a></li>
-      </ul>
-    </nav>
-    </aside>
-    <section className="container" ref={containerRef}>
-      <div className="search">
+    <SideBar  />
+    <HomeContainer>
+      <div className="search" ref={containerRef}>
         <FontAwesomeIcon icon={faSearch} size="lg" color={colors.secondary} />
         <input type="text" placeholder="Find your gif and share it" onChange={handleTermChange} />
       </div>
-      <Grid gifs={gifs} />
-      <button type="button" className="fab-button" onClick={handleScrollTop}>
-        <FontAwesomeIcon icon={faArrowUp} size="lg" color={colors.white} />
-      </button>
+      <Grid gifs={gifs} ref={containerRef} />
       <div ref={scrollObserver} />
-    </section>
+    </HomeContainer>
     </>
   );
 }
