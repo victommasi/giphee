@@ -54,6 +54,10 @@ export const SideBarContainer = styled.ul`
       
       &:not(.active):hover {
         color: rgba(255, 255, 255, 0.75);
+
+        .icon {
+          color: rgba(255, 255, 255, 0.75);
+        }
       }
       
       &::after {
@@ -70,6 +74,7 @@ export const SideBarContainer = styled.ul`
       .icon {
         color: rgba(255, 255, 255, 0.3);
         margin-right: 10px;
+        transition: all ease-out 300ms;
       }
 
       @media screen and (max-width: 768px) {

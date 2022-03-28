@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ForwardedRef, forwardRef } from "react";
-import Card, { Gif } from "../Card/Card";
+import Card from "../Card/Card";
 import { GridContainer } from "./styles";
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import { colors } from "../../styles/colors";
+import { Gif } from "../../store/ducks/FavoriteGifs/types";
 
 type GridProps = {
   gifs: Gif[];

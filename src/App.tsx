@@ -5,14 +5,21 @@ import {
 } from "react-router-dom";
 import './App.css'
 import Router from './router';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './store/store';
 
 const App = () => {
   return (
       <main className="App">
-         <BrowserRouter>
-            <GlobalStyles />
-            <Router />
-        </BrowserRouter>
+         <Provider store={store}>
+            <PersistGate persistor={persistor}>
+              <BrowserRouter>
+                  <GlobalStyles />
+                  <Router />
+              </BrowserRouter>
+            </PersistGate>
+          </Provider>
       </main>
   );
 }

@@ -1,26 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartAlt } from '@fortawesome/free-regular-svg-icons'
+import { useDispatch } from 'react-redux';
 
 import { CardContainer } from './styles';
 import { colors } from '../../styles/colors';
+import { Gif } from '../../store/ducks/FavoriteGifs/types';
+import { removeGif, storeGif } from '../../store/ducks/FavoriteGifs/actions';
+import { useFavoriteGifs } from '../../hooks/useFavoriteGifs';
 
 type CardProps = {
   gif: Gif,
 }
 
-export type Gif = {
-  id: string,
-  images: any,
-  title: string,
-  embed_url: string,
-  username: string,
-}
-
-const Card: React.FC<CardProps> = ({ gif }: CardProps) => {
+const Card: React.FC<CardProps> = ({ gif }) => {
   const [copied, setCopied] = useState<boolean>(false);
   const [favorite, setFavorite] = useState<boolean>(false);
+  const { gifs: storedGifs } = useFavoriteGifs();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (copied) {
@@ -29,14 +27,27 @@ const Card: React.FC<CardProps> = ({ gif }: CardProps) => {
 
   }, [copied]);
 
-  const handleCopyURL = () => {
+  useEffect(() => {
+    const isFavorite = storedGifs.find((g: Gif) => g.id === gif.id)
+    if (isFavorite) {
+      setFavorite(true);
+    }
+  }, [gif.id, storedGifs])
+
+  const handleCopyURL = useCallback(() => {
     navigator.clipboard.writeText(gif.embed_url);
     setCopied(true);
-  }
+  }, [gif.embed_url]);
 
-  const handleSetFavorite = () => {
+  const handleSetFavorite = useCallback(() => {
     setFavorite(!favorite);
-  }
+    
+    if (favorite) {
+      dispatch(removeGif(gif));
+    } else {
+      dispatch(storeGif(gif));
+    }
+  }, [dispatch, favorite, gif]);
 
   return <CardContainer>
     <img alt={gif.title} title={gif.title} src={gif.images.fixed_height.url}/>

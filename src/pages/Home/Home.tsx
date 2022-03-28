@@ -7,10 +7,10 @@ import Grid from '../../components/Grid/Grid';
 import '../../App.css'
 import { fetchTredingGifs, searchGifs } from '../../services/GifsService';
 import { colors } from '../../styles/colors';
-import { Gif } from '../../components/Card/Card';
 import SideBar from '../../components/SideBar/Sidebar';
 
 import { HomeContainer } from './styles';
+import { Gif } from '../../store/ducks/FavoriteGifs/types';
 
 const Home: React.FC = () => {
   const scrollObserver = useRef() as React.MutableRefObject<HTMLInputElement>;
