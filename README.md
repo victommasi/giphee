@@ -1,4 +1,15 @@
-# Getting Started with Create React App
+# Giphee app
+
+**Find your favorite gifs and share it.**
+
+* React v17
+* Typescript
+* Redux
+* Styled Components
+* Jest, Enzyme
+* Font Awesome
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

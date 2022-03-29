@@ -11,6 +11,8 @@ export const HomeContainer = styled.section`
 
     @media screen and (max-width: 475px) {
       margin: 0 0 0 auto;
+      padding-top: 20px;
+      padding-bottom: 20px;
     }
 
     ::-webkit-scrollbar {
@@ -65,6 +67,7 @@ export const HomeContainer = styled.section`
     inset: 90% 0% 0% 90%;
     box-shadow: 0px 2px 10px -4px rgba(0, 0, 0, 1);
     transition: opacity .2s ease-in-out;
+    opacity: 0.9;
 
     &:hover, &:focus {
       opacity: 0.7;

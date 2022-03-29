@@ -5,12 +5,15 @@ export const FavoritesContainer = styled.section`
     max-width: 1400px;
     max-height: 860px;
     margin: 0 auto;
-    padding: 0px 30px;
+    padding: 0 30px;
     background-color: ${colors.primary};
     overflow-y: auto;
+    height: 100%;
 
     @media screen and (max-width: 475px) {
       margin: 0 0 0 auto;
+      padding-top: 20px;
+      padding-bottom: 20px;
     }
 
     ::-webkit-scrollbar {
@@ -44,11 +47,17 @@ export const FavoritesContainer = styled.section`
   .remove-btn {
     background: ${colors.secondary};
     border: none;
-    width: 150px;
+    width: 120px;
     border-radius: 4px;
-    padding: 15px;
+    padding: 10px;
     color: ${colors.white};
     font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    opacity: 0.9;
+
+    &:hover, &:focus {
+      opacity: 0.7;
+    }
   }
 
   .fab-button {
