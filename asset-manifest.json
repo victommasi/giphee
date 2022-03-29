@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/giphee/static/css/main.741bb6e2.chunk.css",
+    "main.js": "/giphee/static/js/main.0f21f47a.chunk.js",
+    "main.js.map": "/giphee/static/js/main.0f21f47a.chunk.js.map",
+    "runtime-main.js": "/giphee/static/js/runtime-main.a80ffb64.js",
+    "runtime-main.js.map": "/giphee/static/js/runtime-main.a80ffb64.js.map",
+    "static/js/2.44d292cf.chunk.js": "/giphee/static/js/2.44d292cf.chunk.js",
+    "static/js/2.44d292cf.chunk.js.map": "/giphee/static/js/2.44d292cf.chunk.js.map",
+    "index.html": "/giphee/index.html",
+    "static/css/main.741bb6e2.chunk.css.map": "/giphee/static/css/main.741bb6e2.chunk.css.map",
+    "static/js/2.44d292cf.chunk.js.LICENSE.txt": "/giphee/static/js/2.44d292cf.chunk.js.LICENSE.txt",
+    "static/media/logo.3aa2711d.png": "/giphee/static/media/logo.3aa2711d.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a80ffb64.js",
+    "static/js/2.44d292cf.chunk.js",
+    "static/css/main.741bb6e2.chunk.css",
+    "static/js/main.0f21f47a.chunk.js"
+  ]
+}
