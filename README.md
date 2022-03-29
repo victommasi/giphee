@@ -1,4 +1,4 @@
-# Giphee app
+# Giphee App
 
 **Find your favorite gifs and share it.**
 
@@ -8,6 +8,10 @@
 * Styled Components
 * Jest, Enzyme
 * Font Awesome
+
+Try it on https://victommasi.github.io/giphee/
+
+
 
 
 
