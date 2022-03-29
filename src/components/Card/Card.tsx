@@ -24,7 +24,6 @@ const Card: React.FC<CardProps> = ({ gif }) => {
     if (copied) {
       setTimeout(() => setCopied(false), 2000);
     }
-
   }, [copied]);
 
   useEffect(() => {
@@ -40,13 +39,13 @@ const Card: React.FC<CardProps> = ({ gif }) => {
   }, [gif.embed_url]);
 
   const handleSetFavorite = useCallback(() => {
-    setFavorite(!favorite);
-    
     if (favorite) {
       dispatch(removeGif(gif));
     } else {
       dispatch(storeGif(gif));
     }
+    
+    setFavorite(!favorite);
   }, [dispatch, favorite, gif]);
 
   return <CardContainer>

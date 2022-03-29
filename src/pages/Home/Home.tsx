@@ -19,6 +19,7 @@ const Home: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const [scrollRatio, setScrollRatio] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const firstRender = useRef(true);
 
   const fetchGifs = async (term: string, offset?: number) => {
     if (term.length > 1) {
@@ -31,11 +32,12 @@ const Home: React.FC = () => {
   const loadInitalGifs = useCallback(async () => {
     const response = await fetchGifs(term);
     setGifs(response.data.data);
+    firstRender.current = false;
   }, []);
 
   useEffect(() => {
     loadInitalGifs();
-  }, [loadInitalGifs]);
+  }, []);
 
   const loadMoreGifs = async () => {
     const newOffset = offset + 10;
@@ -45,7 +47,7 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
-    if (scrollRatio > 0) {
+    if (scrollRatio > 0 && !firstRender.current) {
       loadMoreGifs();
     }
 
